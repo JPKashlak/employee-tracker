@@ -1,11 +1,11 @@
-INSERT INTO departments (name)
+INSERT INTO department (name)
 VALUES
     ('Legal'),
     ('Engineering'),
     ('Sales'),
     ('Finance')
 
-INSERT INTO roles (title, salary, department_id)
+INSERT INTO role (title, salary, department_id)
     ('Senior Lawyer', 100000, 1),
     ('Junior Associate', 85000, 1)
     ('IT Manager', 200000, 2)
@@ -15,7 +15,7 @@ INSERT INTO roles (title, salary, department_id)
     ('Senior Accountant', 75000, 4)
     ('Junior Accountant', 60000, 4)
 
-INSERT INTO employees (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
     ('Adam', 'Zane', 2, 1),
     ('Beth', 'Yruges', 7, NULL),
     ('Carl', 'Xavier', 4, 3),
