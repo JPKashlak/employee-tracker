@@ -25,14 +25,21 @@ const promptUser = () => {
             type: 'list',
             name: 'menu',
             message: "Select an option:",
-            choices: ['View All Departments', 'View All Employees', 'Add Department', 'Add Role', 'Add Employee', 'Update Employee Role', 'Quit']
+            choices: ['View All Departments', 
+                      'View All Employees', 
+                      'Add Department', 
+                      'Add Role', 
+                      'Add Employee', 
+                      'Update Employee Role', 
+                      'Quit'
+                        ]
             }
         ]
     )
     .then(response => {
         if(response.menu === 'View All Departments') {
             console.log("Dept")
-            promptUser();
+            viewDepartment();
         }
         if(response.menu === 'View All Employees') {
             console.log("Emp")
@@ -60,19 +67,11 @@ const promptUser = () => {
     }) 
 }
 
-function viewEmployees() {
-    const query = `SELECT employees.id, employees.first_name, employees.last_name, roles.title, departments.name AS department, roles.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager
-    FROM employee
-    LEFT JOIN employee manager on manager.id = employee.manager_id
-    INNER JOIN role ON (role.id = employee.role_id)
-    INNER JOIN department ON (department.id = role.department_id)
-    ORDER BY employee.id;`;
-    connection.query(query, (err, res) => {
-        if (err) throw err;
-        console.log('\n');
-        console.log('VIEW ALL EMPLOYEES');
-        console.log('\n');
-        console.table(res);
-        prompt();
+function viewDepartment() {
+    const query = "SELECT * FROM department";
+    connection.query(query, function(err, res) {
+      if (err) throw err;
+      console.table(res);
+      start();
     });
-}
+  }
